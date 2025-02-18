@@ -1,0 +1,48 @@
+Question: Build a PaymentProcessor System
+You are tasked with creating a PaymentProcessor system for a shopping platform. The platform supports multiple payment methods, including CreditCard, DebitCard, PayPal, and NetBanking. The system should allow the registration of payment methods and process payments accordingly.
+Implement the following classes:
+PaymentProcessor
+PaymentProcessor getProcessor() - Returns the instance of the PaymentProcessor class.
+void registerPaymentMethod(String methodKey, PaymentMethod method) - Registers a payment method so that the payment processor can process payments using it. Here, PaymentMethod is an abstract class provided in the locked stub code.
+PaymentMethod processPayment(String methodKey, double amount) - Processes a payment using the given payment method. If the requested payment method is not registered, throw the exception UnsupportedPaymentMethodException with the message "Unsupported payment method {methodKey} for amount {amount}". The implementation of UnsupportedPaymentMethodException is provided in the locked stub code.
+PaymentMethod (Abstract Class)
+Contains an abstract method:
+String pay(double amount) - Returns a string indicating the payment process, e.g., "Paid {amount} using {methodKey}".
+Supported Payment Methods
+Implement the following concrete classes extending PaymentMethod:
+CreditCardPayment
+DebitCardPayment
+PayPalPayment
+NetBankingPayment
+Each concrete class should implement the pay(double amount) method to return a message specific to the payment method.
+Input Format
+The input is structured as follows:
+The first line contains the number of payment requests, totalPaymentRequests.
+The next totalPaymentRequests lines contain a methodKey and amount separated by a space.
+Output Format
+For each payment request:
+Print the payment process message, e.g., "Paid 500.0 using CreditCard".
+If the payment method is unsupported, print the exception message.
+Constraints
+1 ≤ totalPaymentRequests ≤ 100
+1.0 ≤ amount ≤ 10^5
+Example Input
+yaml
+Copy code
+4
+CreditCard 1000.0
+PayPal 500.0
+Crypto 300.0
+NetBanking 1500.0
+Example Output
+sql
+Copy code
+Paid 1000.0 using CreditCard
+Paid 500.0 using PayPal
+Unsupported payment method Crypto for amount 300.0
+Paid 1500.0 using NetBanking
+Explanation
+CreditCard 1000.0 - The CreditCard method is registered, so the payment is processed successfully.
+PayPal 500.0 - The PayPal method is registered, so the payment is processed successfully.
+Crypto 300.0 - The Crypto method is not registered, so an exception is thrown.
+NetBanking 1500.0 - The NetBanking method is registered, so the payment is processed successfully.
